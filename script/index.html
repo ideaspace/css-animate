@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 动画脚本</title>
+	<meta name="keywords" content="CSS3, CSS3动画, 动画脚本">
+	<meta name="description" content="文章将为您介绍一些与CSS3动画有关的脚本">
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/script.css">
+	<link rel="stylesheet" href="../css/prettify.css">
+	<!--[if lt IE 9]>
+		<script src="../js/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="page">
+	<div class="navbar">
+		<div class="inner">
+			<ul class="nav">
+				<li>
+					<a href="../">Home</a>
+				</li>
+				<li>
+					<a href="../transform/">Transform</a>
+				</li>
+				<li>
+					<a href="../transition/">Transition</a>
+				</li>
+				<li>
+					<a href="../animation/">Animation</a>
+				</li>
+				<li>
+					<a href="../event/">Event</a>
+				</li>
+				<li class="active">
+					<a href="../script/">Script</a>
+				</li>
+                <!--<li>-->
+                    <!--<a href="../easing/">Easing</a>-->
+                <!--</li>-->
+			</ul>
+            <a class="weibo" target="_blank" title="新浪微博" href="http://weibo.com/ideaspace/">@ideaspace</a>
+		</div>
+	</div>
+	<div class="wrap">
+		<header class="banner">
+			<div class="inner">
+				<h1 class="heading">CSS3 Animation Script</h1>
+				<p>这里将介绍一些与<code>CSS3</code>动画有关的脚本。</p>
+			</div>
+		</header>
+		<div class="container clearfix">
+			<div class="main">
+				<aside class="span-1">
+					<div class="inner">
+						<ul class="nav nav-list property-nav">
+							<li><a href="#detect">Detect<i class="icon-chevron-right"></i></a></li>
+							<li><a href="#requestAniFrame">Request Animation Frame<i class="icon-chevron-right"></i></a></li>
+						</ul>
+						<article class="tips">
+							<header>
+								<h2 class="title">贴士</h2>
+								<section class="part">
+									<div class="sect">
+										<p class="paragraph"><code>requestAnimationFrame</code> 并不是一个<code>CSS3</code>动画属性。而是一个用来解决动画中丢失帧问题的<code>Api</code>。
+                                        <p class="paragraph">该方法通过在系统准备好绘制动画帧时调用该帧，从而为创建动画网页提供了一种更平滑更高效的方法。</p>
+									</div>
+								</section>
+							</header>
+						</article>
+					</div>
+				</aside>
+				<div class="span-2">
+					<section id="detect">
+						<header class="page-header">
+							<h1>Detect</h1>
+							<div class="explain">
+								<p>通过脚本探测，我们能够知道浏览器是否支持<code>CSS3</code>动画属性。</p>
+							</div>
+						</header>
+						<pre class="prettyprint linenums js">var detector = function() {
+    var vendors = ['webkit','Moz','ms','O'],
+        node = document.body,
+        prefix,
+        ani = false,
+        tsf = false,
+        aniProp ='' ,
+        tsfProp = '';
+    if ( node.style.animation !== undefined ) {
+        ani = true;
+        aniProp = 'animation';
+    }
+    if ( node.style.transform !== undefined ) {
+        tsf = true;
+        tsfProp = 'transform';
+    }
+    if ( !ani ) {
+        for ( var i = 0, len = vendors.length; i < len; i++ ) {
+            if ( node.style[vendors[i] + 'Animation'] !== undefined ) {
+                prefix = vendors[i];
+                aniProp = prefix + 'Animation';
+                ani = true;
+                break;
+            }
+        }
+    }
+    if ( !tsf ) {
+        for ( var i = 0, len = vendors.length; i < len; i++ ) {
+            if ( node.style[vendors[i] + 'Transform'] !== undefined ) {
+                prefix = vendors[i];
+                tsfProp = prefix + 'Transform';
+                tsf = true;
+                break;
+            }
+        }
+    }
+    return {
+        animation : ani,
+        animationProp : aniProp,
+        transform : tsf,
+        transformProp : tsfProp,
+        vendor : prefix || 'Moz',
+        event : {
+            start : prefix ? prefix + 'AnimationStart' : 'animationstart',
+            end   : prefix ? prefix + 'AnimationEnd' : 'animationend',
+            iteration : prefix ? prefix + 'AnimationIteration' : 'animationiteration'
+        }
+    }
+}</pre>
+					</section>
+					<section id="requestAniFrame">
+						<header class="page-header">
+							<h1>Request Animation Frame</h1>
+							<div class="explain">
+								<p><code style="margin-left:0;">requestAnimationFrame</code> 方法（在万维网联合会 <code>(W3C)</code>的针对基于脚本的动画的计时控制规范中定义）可以解决丢失帧的问题，因为它使应用能够在浏览器需要更新页面显示时（而且仅在这种情况下）获得通知。 因此，应用可与浏览器的绘制时间间隔保持完全一致，并且仅使用适量的资源。</p>
+								<p>从 <code>setTimeout</code> 切换到 <code>requestAnimationFrame</code> 非常容易，因为它们都规划单个回调。要实现持续的动画，必须在调用动画函数后再次调用 <code>requestAnimationFrame</code>。</p>
+							</div>
+						</header>
+						<div class="alert red">
+							<p>不同方式实现的动画效果。</p>
+						</div>
+                        <div class="example ani-compared">
+                        	<p><code>Animated with</code></p>
+                        	<ul>
+                                <li>
+                                    <p><code>setTimeout</code></p>
+                                    <div class="node node-red ani-timeout">Timeout</div>
+                                </li>
+                        		<li>
+                        			<p><code>setInterval</code></p>
+                        			<div class="node node-orange ani-interval">Interval</div>
+                        		</li>
+                        		<li>
+                        			<p><code>requestAnimationFrame</code></p>
+                        			<div class="node node-blue ani-frame">Frame</div>
+                        		</li>
+                        		<li>
+                        			<p><code>CSS3 Animation</code></p>
+                        			<div class="node node-green ani-rotate">CSS3</div>
+                        		</li>
+                        	</ul>
+                        </div>
+                        <pre class="prettyprint linenums js">/**
+ * Provides requestAnimationFrame in a cross browser way.
+ * http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+ */
+
+// shim layer with setTimeout fallback
+window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame   ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame    ||
+        window.oRequestAnimationFrame      ||
+        window.msRequestAnimationFrame     ||
+        function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+        };
+})();
+
+
+// usage:
+// instead of setInterval(render, 16) ....
+
+(function animloop(){
+    requestAnimFrame(animloop);
+    render();
+})();
+// place the rAF *before* the render() to assure as close to
+// 60fps with the setTimeout fallback.</pre>
+					</section>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="inner">
+				<p>Copyright &copy; Jease.net All Rights Reserved.</p>
+			</div>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/afixed.js"></script>
+        <script type="text/javascript" src="../js/base.js"></script>
+		<script type="text/javascript" src="../js/google-code-prettify.js"></script>
+		<script type="text/javascript">
+			(function(){
+				window.prettyPrint && prettyPrint();
+                var aniFrame = function() {
+                    var sp = Ye.detect.support();
+                    var angle = 0;
+                    (function loop() {
+                        requestAnimationFrame(loop);
+                        document.querySelector('.ani-frame').style[sp.transformProp] = 'rotate('+angle+'deg)';
+                        angle += 2;
+                    })()
+                }
+                aniFrame();
+                var aniInterval = function() {
+                    var sp = Ye.detect.support();
+                    var angle = 0;
+                    setInterval(function() {
+                        document.querySelector('.ani-interval').style[sp.transformProp] = 'rotate('+angle+'deg)';
+                        angle += 2;
+                    },1000 / 60)
+                }
+                aniInterval();
+                var aniTimeout = function() {
+                    var sp = Ye.detect.support();
+                    var angle = 0;
+                    setTimeout(function() {
+                        document.querySelector('.ani-timeout').style[sp.transformProp] = 'rotate('+angle+'deg)';
+                        angle += 2;
+                        setTimeout(arguments.callee,1000 / 60)
+                    },1000 / 60)
+                }
+                aniTimeout();
+			})()
+		</script>
+	</div>
+</body>
+</html>

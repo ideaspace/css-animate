@@ -1,0 +1,407 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 动画属性之 Animation</title>
+	<meta name="keywords" content="CSS3, CSS3动画, Animation">
+	<meta name="description" content="Animation能够让CSS属性在一定时间间隔内实现动画过渡的效果，定义更丰富生动的动画">
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/animation.css">
+	<link rel="stylesheet" href="../css/prettify.css">
+	<!--[if lt IE 9]>
+		<script src="../js/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="page">
+	<div class="navbar">
+		<div class="inner">
+			<ul class="nav">
+				<li>
+					<a href="../">Home</a>
+				</li>
+				<li>
+					<a href="../transform/">Transform</a>
+				</li>
+				<li>
+					<a href="../transition/">Transition</a>
+				</li>
+				<li class="active">
+					<a href="../animation/">Animation</a>
+				</li>
+				<li>
+					<a href="../event/">Event</a>
+				</li>
+				<li>
+					<a href="../script/">Script</a>
+				</li>
+                <!--<li>-->
+                    <!--<a href="../easing/">Easing</a>-->
+                <!--</li>-->
+			</ul>
+			<a class="weibo" target="_blank" title="新浪微博" href="http://weibo.com/ideaspace/">@ideaspace</a>
+		</div>
+	</div>
+	<div class="wrap">
+		<header class="banner">
+			<div class="inner">
+				<h1 class="heading">CSS3 Animation</h1>
+				<p><code>Animation</code>能够让<code>CSS</code>属性在一定时间间隔内实现平滑过渡的动画效果，相对于<code>Transition</code>提供更为复杂的动画组合。</p>
+				<p><code>Animation</code>通过<code>@keyframes</code>规则来定义更丰富生动的动画。</p>
+			</div>
+		</header>
+		<div class="container">
+			<div class="main clearfix">
+				<aside class="span-1">
+					<div class="inner">
+						<ul class="nav nav-list property-nav">
+							<li>
+								<a href="#animation">Animation<i class="icon-chevron-right"></i></a>
+							</li>
+							<li>
+								<a href="#name">Name<i class="icon-chevron-right"></i></a>
+							</li>
+							<li>
+								<a href="#duration">Duration<i class="icon-chevron-right"></i></a>
+							</li>
+							<li>
+								<a href="#timingFunction">Timing Function<i class="icon-chevron-right"></i></a>
+							</li>
+							<li>
+								<a href="#delay">Delay<i class="icon-chevron-right"></i></a>
+							</li>
+							<li>
+								<a href="#iterationCount">Iteration Count<i class="icon-chevron-right"></i></a>
+							</li>
+							<li>
+								<a href="#direction">Direction<i class="icon-chevron-right"></i></a>
+							</li>
+							<li>
+								<a href="#playState">Play State<i class="icon-chevron-right"></i></a>
+							</li>
+							<li>
+								<a href="#fillMode">Fill Mode<i class="icon-chevron-right"></i></a>
+							</li>
+						</ul>
+						<article class="tips">
+							<header>
+								<h2 class="title">贴士</h2>
+								<section class="part">
+									<div class="sect">
+										<p class="paragraph"><code>CSS3 Animation</code>在整个动画执行过程中会影响已经计算的<code>CSS</code>属性值，完全控制这些属性值的计算，并重写这些属性值。</p>
+										<p class="paragraph"><code>CSS3 Animation</code>不会影动画执行之前、动画延迟执行时间结束之前、动画结束之后计算的属性值。</p>
+										<p>一个动画要应用于某个元素，需要定义一个动画名称，和指向该名称的关键帧规则。</p>
+									</div>
+								</section>
+							</header>
+						</article>
+					</div>
+				</aside>
+			<div class="span-2">
+				<!-- Animation Property -->
+				<section id="animation">
+					<header class="page-header">
+						<h1>Animation</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象所应用的动画特效。</strong></p>
+							<p>缩写格式，包含<code>7</code>个动画属性。</p>
+							<p>对应的脚本特性为<strong><code>animation</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>[&lt;animation-name&gt;  &lt;animation-duration&gt;  &lt;animation-timing-function&gt;  &lt;animation-delay&gt;  &lt;animation-iteration-count&gt;  &lt;animation-direction&gt;  &lt;animation-fill-mode&gt;]</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="animate">
+							<div class="node node-red ani-1">Shake</div>
+							<div class="node node-orange ani-2">Bounce</div>
+							<div class="node node-yellow ani-3">Tada</div>
+							<div class="node node-green ani-4">Swing</div>
+							<div class="node node-blue ani-5">Wobble</div>
+							<div class="node node-purple ani-6">Wiggle</div>
+							<div class="node node-brown ani-7">Pulse</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">
+.animation {
+    -webkit-animation: &lt;name&gt; &lt;duration&gt; &lt;timing-function&gt; &lt;delay&gt; &lt;counts&gt;;
+       -moz-animation: &lt;name&gt; &lt;duration&gt; &lt;timing-function&gt; &lt;delay&gt; &lt;counts&gt;;
+        -ms-animation: &lt;name&gt; &lt;duration&gt; &lt;timing-function&gt; &lt;delay&gt; &lt;counts&gt;;
+         -o-animation: &lt;name&gt; &lt;duration&gt; &lt;timing-function&gt; &lt;delay&gt; &lt;counts&gt;;
+            animation: &lt;name&gt; &lt;duration&gt; &lt;timing-function&gt; &lt;delay&gt; &lt;counts&gt;;
+}
+@-keyframes &lt;name&gt; {
+	/* rules */
+}</pre>
+				</section>
+				<!-- Rotate Property -->
+				<section id="name">
+					<header class="page-header">
+						<h1>Name</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象所应用的动画名称。</strong></p>
+							<p>动画名称匹配<code>@keyframes</code>规则名称，并对<code>@keyframes</code>规则中定义的属性执行动画。</p>
+						</div>
+						<div class="use">
+							<p><code>animation-name: [ none | &lt;ident&gt; ] [, [ none | &lt;ident&gt; ] ]* </code></p>
+						</div>
+					</header>
+					<pre class="prettyprint linenums css">/* 定义动画名称和变化属性的规则 */
+.animation {
+    -webkit-animation-name: &lt;name&gt;;
+       -moz-animation-name: &lt;name&gt;;
+        -ms-animation-name: &lt;name&gt;;
+         -o-animation-name: &lt;name&gt;;
+            animation-name: &lt;name&gt;;
+}
+@-keyframes &lt;name&gt; {
+	/* rules */
+}</pre>
+				</section>
+				<!-- Scale Property -->
+				<section id="duration">
+					<header class="page-header">
+						<h1>Duration</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象动画的持续时间。</strong></p>
+							<p>这个属性定义了实现一次完整动画的时间。初始值为<code>0s</code>，表示动画立即完成。取负值时也作为<code>0s</code>看待。</p>
+							<p>对应的脚本特性<strong><code>animationDuration</code></strong></p>
+						</div>
+						<div class="use">
+							<p><code>animation-duration: &lt;time&gt; [, &lt;time&gt;]*</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="animate ani-duration">
+							<div class="node node-red ani-1">Shake</div>
+							<div class="node node-orange ani-2">Bounce</div>
+							<div class="node node-yellow ani-3">Tada</div>
+							<div class="node node-green ani-4">Swing</div>
+							<div class="node node-blue ani-5">Wobble</div>
+							<div class="node node-purple ani-6">Wiggle</div>
+							<div class="node node-brown ani-7">Pulse</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">/* 设置动画持续时间为 2s */
+.animation {
+    -webkit-animation-duration: 2s;
+       -moz-animation-duration: 2s;
+        -ms-animation-duration: 2s;
+         -o-animation-duration: 2s;
+            animation-duration: 2s;
+}</pre>
+				</section>
+				<!-- Translate Property -->
+				<section id="timingFunction">
+					<header class="page-header">
+						<h1>Timing Function</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象动画的运动类型。</strong></p>
+							<p>这个属性规定了一些运动算法，初始值为<code>ease</code>。我们也使用<code>cubic-bezier</code>贝赛尔曲线自定义动画运动曲线。</p>
+							<p>在关键帧动画中，此属性应用于多个关键帧。另外，也可以定义在某个关键帧内部，执行动画后，过渡到另一个关键帧。</p>
+						</div>
+						<div class="use">
+							<p><code>animation-timing-function: [ ease | linear | ease-in | ease-out | ease-in-out | step-start | step-end | steps(&lt;number&gt;[, [ start | end ] ]?) | cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;) ]</code></p>
+						</div>
+					</header>
+					<div class="alert red">
+						<p>几个<code>CSS3</code>内建的动画缓动效果。</p>
+					</div>
+					<div class="example">
+						<div class="animate ani-tf">
+							<div class="node node-red ani-ease">ease</div>
+							<div class="node node-orange ani-linear">linear</div>
+							<div class="node node-yellow ani-ease-in">ease-in</div>
+							<div class="node node-green ani-ease-out">ease-out</div>
+							<div class="node node-blue ani-ease-in-out">ease-in-out</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.animation {
+    -webkit-animation-timing-function: &lt;fn&gt;;
+       -moz-animation-timing-function: &lt;fn&gt;;
+        -ms-animation-timing-function: &lt;fn&gt;;
+         -o-animation-timing-function: &lt;fn&gt;;
+            animation-timing-function: &lt;fn&gt;;
+}</pre>
+				</section>
+				<!-- Skew Property -->
+				<section id="delay">
+					<header class="page-header">
+						<h1>Delay</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象动画的延迟时间。</strong></p>
+							<p>定义动画在什么时间点开始执行。默认值为<code>0s</code>，表示动画应用后立刻执行。</p>
+							<p>负值时表示动画瞬间完成，回到开始状态。</p>
+						</div>
+						<div class="use">
+							<p><code>animation-delay: &lt;time&gt; [, &lt;time&gt;]* </code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="animate ani-tf ani-delay">
+							<div class="node node-red ani-ease">ease</div>
+							<div class="node node-orange ani-linear">linear</div>
+							<div class="node node-yellow ani-ease-in">ease-in</div>
+							<div class="node node-green ani-ease-out">ease-out</div>
+							<div class="node node-blue ani-ease-in-out">ease-in-out</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">/* 设置动画延迟执行的时间 */
+.animation {
+    -webkit-animation-delay: .5s;
+       -moz-animation-delay: .5s;
+        -ms-animation-delay: .5s;
+         -o-animation-delay: .5s;
+            animation-delay: .5s;
+}</pre>
+				</section>
+				<!-- Matrix Property -->
+				<section id="iterationCount">
+					<header class="page-header">
+						<h1>Iteration Count</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象动画的循环次数。</strong></p>
+							<p>初始值为<code>1</code>，<code>infinite</code>表示无限循环。不能为负值。</p>
+							<p>通常和<code>animation-direction: alternate</code>属性一起使用。</p>
+							<p>对应的脚本特性为<strong><code>animationIterationCount</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>animation-iteration-count: [ infinite | &lt;number&gt; ] [, [ infinite | &lt;number&gt; ] ]*</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="animate ani-infinite">
+							<div class="node node-red ani-1">Shake</div>
+							<div class="node node-orange ani-2">Bounce</div>
+							<div class="node node-yellow ani-3">Tada</div>
+							<div class="node node-green ani-4">Swing</div>
+							<div class="node node-blue ani-5">Wobble</div>
+							<div class="node node-purple ani-6">Wiggle</div>
+							<div class="node node-brown ani-7">Pulse</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.animation {
+    -webkit-animation-iteration-count: infinite;
+       -moz-animation-iteration-count: infinite;
+        -ms-animation-iteration-count: infinite;
+         -o-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+}</pre>
+				</section>
+				<section id="direction">
+					<header class="page-header">
+						<h1>Direction</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象动画在循环中是否反向运动。</strong></p>
+							<p>初始值为<code>normal</code>。</p>
+							<p>注意当动画处于反向运动时，对应的运动类型也会翻转。例如使用<code>ease-in</code>会变成<code>ease-out</code>。</p>
+							<p>对应的脚本特性为<strong><code>animationDirection</code></strong></p>
+						</div>
+						<div class="use">
+							<p><code>animation-direction: [ normal | reverse | alternate | alternate-reverse ] </code></p>
+							<p><code>normal</code> 表示动画按规定的方式运动。</p>
+							<p><code>reverse</code> 表示动画按规定的相反方式运动。</p>
+							<p><code>alternate</code> 表示动画奇数<code>(odd)</code>次时按规定的方式运动，偶数<code>(even)</code>次时按规定的相反方式运动。</p>
+							<p><code>alternate-reverse</code> 表示动画偶数<code>(even)</code>次时按规定的方式运动，奇数<code>(odd)</code>次时按规定的相反方式运动。</p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="animate ani-tf ani-direct br-text">
+							<div class="node node-red ani-ease-in">ease-in</div>
+							<div class="node node-orange ani-ease-in ani-reverse"><span>ease-in</span><span>reverse</span></div>
+							<div class="node node-yellow ani-ease-out">ease-out</div>
+							<div class="node node-green ani-ease-out ani-reverse"><span>ease-out</span><span>reverse</span></div>
+							<div class="node node-blue ani-ease-in-out">ease-in-out</div>
+							<div class="node node-purple ani-ease-in-out ani-reverse"><span>ease-in-out</span><span>reverse</span></div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.animation {
+    -webkit-animation-direction: reverse;
+       -moz-animation-direction: reverse;
+        -ms-animation-direction: reverse;
+         -o-animation-direction: reverse;
+            animation-direction: reverse;
+}</pre>
+				</section>
+				<section id="playState">
+					<header class="page-header">
+						<h1>Play State</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象动画的状态。</strong></p>
+							<p>该属性定义动画是否运行和暂停。设置状态为<code>paused</code>能够使一个运动的动画暂停。再次设置状态为<code>running</code>会继续当前的动画，而无需重新执行动画。</p>
+							<p>对应的脚本特性为<strong><code>animationPlayState</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>animation-play-state: [ running | paused ]</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="animate ani-play">
+							<div class="node node-red ani-pause">Node</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.animation {
+    -webkit-animation-play-state: paused;
+       -moz-animation-play-state: paused;
+        -ms-animation-play-state: paused;
+         -o-animation-play-state: paused;
+            animation-play-state: paused;
+}</pre>
+				</section>
+				<section id="fillMode">
+					<header class="page-header">
+						<h1>Fill Mode</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象动画时间之外的状态。</strong></p>
+							<p>对应的脚本特性为<strong><code>animationFillMode</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>animation-fill-mode: [ none | forwards | backwards | both ]</code></p>
+							<p><code>none</code> 表示不改变对象在执行完规定时间内动画之后的状态。</p>
+							<p><code>forwards</code> 动画会在执行完最后一个关键帧之后应用这个属性。最后一帧通常是 <code>100%(to)</code> 状态，除非动画设置了无限循环。</p>
+							<p><code>backwards</code> 使用这个属性，动画在执行完规定时间的运动后，会回到最开始状态。也就是 <code>0%(from)</code> 关键帧。</p>
+							<p><code>both</code> 这个属性表示对象在执行完规定时间内动画之后应用上述两个状态。</p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="animate ani-fm">
+							<div class="row">
+								<div class="node node-red ani-fm-none">none</div>
+							</div>
+							<div class="row">
+								<div class="node node-orange ani-fm-forward">forwards</div>
+							</div>
+							<div class="row">
+								<div class="node node-yellow ani-fm-backward">backwards</div>
+							</div>
+							<div class="row">
+								<div class="node node-blue ani-fm-both">both</div>
+							</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.animation {
+    -webkit-animation-fill-mode: &lt;value&gt;;
+       -moz-animation-fill-mode: &lt;value&gt;;
+        -ms-animation-fill-mode: &lt;value&gt;;
+         -o-animation-fill-mode: &lt;value&gt;;
+            animation-fill-mode: &lt;value&gt;;
+}</pre>
+				</section>
+			</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="inner">
+				<p>Copyright &copy; Jease.net All Rights Reserved.</p>
+			</div>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/afixed.js"></script>
+		<script type="text/javascript" src="../js/google-code-prettify.js"></script>
+		<script type="text/javascript">
+			(function(){
+				window.prettyPrint && prettyPrint();
+			})()
+		</script>
+	</div>
+</body>
+</html>

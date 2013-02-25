@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>您需要知道的 CSS3 动画属性</title>
+	<meta name="keywords" content="CSS3, CSS3动画, 过度, 变换, 属性探测">
+	<meta name="description" content="本文讨论主要讨论CSS3动画属性，它们能够赋予你更强大的控制页面元素的能力，实现很酷的纯CSS3的动画效果。">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/home.css">
+	<!--[if lt IE 9]>
+		<script src="js/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="home">
+	<div class="navbar">
+		<div class="inner">
+			<ul class="nav">
+				<li class="active">
+					<a href="./">Home</a>
+				</li>
+				<li>
+					<a href="transform/">Transform</a>
+				</li>
+				<li>
+					<a href="transition/">Transition</a>
+				</li>
+				<li>
+					<a href="animation/">Animation</a>
+				</li>
+				<li>
+					<a href="event/">Event</a>
+				</li>
+				<li>
+					<a href="script/">Script</a>
+				</li>
+                <!--<li>-->
+                    <!--<a href="easing/">Easing</a>-->
+                <!--</li>-->
+			</ul>
+			<a class="weibo" target="_blank" title="新浪微博" href="http://weibo.com/ideaspace/">@ideaspace</a>
+		</div>
+	</div>
+	<div class="wrap">
+		<header class="banner">
+			<div class="inner">
+				<h1 class="heading">CSS3 动画属性</h1>
+				<p><code class="red">Transform</code>, <code class="green">Transition</code>, <code class="yellow">Animation</code></p>
+				<p class="ver"><code>version 1.3.1</code></p>
+			</div>
+		</header>
+		<div id="userAgent" class="support emphasize">
+			<p></p>
+		</div>
+		<article class="post">
+			<header>
+				<h2 class="title">序言</h2>
+			</header>
+			<section class="part">
+				<div class="sect">
+					<p>随着网络的发展，浏览器具备更强的渲染更高级代码的能力。而<code>CSS3</code>技术的发展，使文档的呈现变得更加的生动有趣。</p>
+					<p></p>
+					<p>本文将带您走的更远，看一看变换<code>(transformation)</code>、过渡<code>(transition)</code>和动画<code>(animation)</code>等更高级的<code>CSS3</code>技术。我们将涉及代码本身、浏览器支持以及一些可以正确地展示这些新属性是如何即提升你的设计又增强整体用户体验的例子。</p>
+				</div>
+			</section>
+			<header>
+				<h2 class="title">简介</h2>
+			</header>
+			<section class="part">
+				<div class="sect">
+					<p class="paragraph"><strong><code class="emphasize">CSS3 Transform</code></strong> 是一个非常强大的属性，让你能够更灵活的操作文档中的元素。<code>Transform</code>属性实现了一些可用<code>SVG</code>实现的同样的功能。它可用于内联<code>(inline)</code>元素和块级<code>(block)</code>元素。它允许我们旋转<code>(rotate)</code>、缩放<code>(scale)</code>、倾斜<code>(skew)</code>和移动<code>(translate)</code>元素。<a href="transform/">阅读详细»</a></p>
+					<p class="paragraph"><strong><code class="emphasize">CSS3 Transition</code></strong> 是一个涉及到元素过渡效果的属性。让你能够实现元素属性从静止状态到激活状态的转变。比如：元素背景色的变换：静止状态(深蓝色背景) ~ 激活状态(浅蓝色背景)。<a href="transition/">阅读详细»</a></p>
+					<p class="paragraph"><strong><code class="emphasize">CSS3 Animation</code></strong> 是名符其实的动画属性，如果配合<code>Transform</code>使用，将使你的页面变得生动。而且相对于使用脚本实现的动画，其拥有更加高效的性能。<a href="animation/">阅读详细»</a></p>
+					<p>以上特性也是可以通过<code>JavaScript</code>事件触发，希望通过我们比较详细的叙述，让您更容易把这些特性整合到文档中去。在接下来的内容中，我们会通过例子来讲述2D和3D的变换以及动画。最后还得提醒一句，请使用支持<code>CSS Animations</code>和<code>Transforms</code>属性的浏览器进行浏览。</p>
+				</div>
+			</section>
+			<header>
+				<h2 class="title">从丽江的图片开始</h2>
+			</header>
+			<section class="part">
+				<div class="poetry">
+					<p>丽江，一座闻名遐迩的古城。</p>
+					<p>多少年以来，她清幽，隽秀，超然，博大。</p>
+					<p>拨开历史的风尘，会发现，她包容着正在发生的历史。</p>
+					<p>所以一旦身临其中，您便不想再离去。在流连与忘返中，多么希望时间能够定格。</p>
+					<p>当颠簸的岁月带着我们逐渐远去，我们的梦想却留在了丽江......</p>
+				</div>
+				<div class="animate">
+					<ul class="thumbnails clearfix">
+						<li>
+							<div class="pic">
+								<img src="imgs/1.jpg" alt="Li Jiang">
+								<div class="mark mark-top"></div>
+								<div class="mark mark-bottom"></div>
+								<div class="text">
+									<p>丽江，一座闻名遐迩的古城。一旦身临其境，便流连忘返。</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="pic">
+								<img src="imgs/2.jpg" alt="Li Jiang">
+								<div class="mark"></div>
+								<div class="text">
+									<p>此景只应天上有，人间能有几回闻。</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="pic">
+								<img class="animate" src="imgs/3.jpg" alt="Li Jiang">
+								<div class="mark"></div>
+								<div class="text">
+									<p>丽江古城，未曾走远，便已怀念。</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</article>
+		<footer class="footer">
+			<div class="inner">
+				<p>Copyright &copy; Jease.net All Rights Reserved. </p>
+			</div>
+		</footer>
+	</div>
+    <div id="tmplPop"></div>
+    <script id="winPop" type="text/x-jquery-tmpl">
+        <div id="winAlert" class="win win-pop win-default hidden">
+            <div class="inner">
+                <div class="hd"><button class="close" data-bind="close">&times;</button><h3>${Tips}</h3></div>
+                <div class="bd">
+                    <p>{{html words}}</p>
+                </div>
+                <div class="ft">
+                    <a href="#" class="btn btn-major" data-bind="close">确定</a>
+                </div>
+            </div>
+            <div class="win-bg"></div>
+        </div>
+    </script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    if ( Ye.detect.isBelowIe10() ) {
+		        var data = {
+		            Tips: "温馨提示",
+		            words: "检测到您正在使用低于<code>IE10</code>版本的<code>IE</code>神器，并不支持<code>CSS3</code>动画属性。"
+		        };
+		        $('#tmplPop').empty().append($('#winPop').tmpl(data));
+		        setTimeout(function() {
+		            new Ye.dialog('#winAlert',{
+		                masker : true,
+		                static : true
+		            })
+		        },500)
+		    }
+		    var sp = Ye.detect.support();
+		    var node = $("#userAgent > p");
+		    sp.animation && sp.transform ?
+		    node.html('您的浏览器通过<em>'+ sp.transformProp +'</em>属性来支持<code>CSS3 Transform</code>，通过<em>' + sp.animationProp + '</em>属性来支持<code>CSS3 Animation</code>。')
+		    : sp.transform ? node.html('您的浏览器通过<em>' + sp.transformProp + '</em>属性来支持<code>CSS3 Transform</code>, 但不支持<code>CSS3 Animation</code>')
+		    : node.html("您的浏览器并不支持<code>CSS3</code>动画");
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+2012/11/04  ver 1.0.2 优化左侧导航，窗口滚动时固定。
+2012/11/05  ver 1.1.0 优化脚本，增加 requestAnimationFrame 例子。
+2012/11/06  ver 1.2.0 优化 Animation Event 例子，增加监听事件上下文信息的例子。
+2012/11/07  ver 1.2.1 增加 Transform Matrix 图片。
+2012/11/08  ver 1.3.0 重构 Transition 例子，更好的用户体验。
+2012/12/13  ver 1.3.1 增加支持 Transition 的样式属性列表。

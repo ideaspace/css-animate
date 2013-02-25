@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 动画属性之 Transform</title>
+	<meta name="keywords" content="CSS3, CSS3动画, 2D变换, Transform">
+	<meta name="description" content="Transform属性实现了元素的2D和3D变换">
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/transform.css">
+	<link rel="stylesheet" href="../css/prettify.css">
+	<!--[if lt IE 9]>
+		<script src="../js/html5.js"></script>
+	<![endif]--> 
+</head>
+<body class="page">
+	<div class="navbar">
+		<div class="inner">
+			<ul class="nav">
+				<li>
+					<a href="../">Home</a>
+				</li>
+				<li class="active">
+					<a href="../transform/">Transform</a>
+				</li>
+				<li>
+					<a href="../transition/">Transition</a>
+				</li>
+				<li>
+					<a href="../animation/">Animation</a>
+				</li>
+				<li>
+					<a href="../event/">Event</a>
+				</li>
+				<li>
+					<a href="../script/">Script</a>
+				</li>
+                <!--<li>-->
+                    <!--<a href="../easing/">Easing</a>-->
+                <!--</li>-->
+			</ul>
+			<a class="weibo" target="_blank" title="新浪微博" href="http://weibo.com/ideaspace/">@ideaspace</a>
+		</div>
+	</div>
+	<div class="wrap">
+		<header class="banner">
+			<div class="inner">
+				<h1 class="heading">CSS3 Transform</h1>
+				<p><code>Transform</code>属性实现了一些可用<code>SVG</code>实现的同样的功能。可作用于内联<code>(inline)</code>元素和块级<code>(block)</code>元素。</p>
+				<p><code>Transform</code>同时支持<code>2D</code>和<code>3D</code> (需配合<code>perspective</code>属性) 变换。此处我们暂时只讨论<code>2D</code>变换的情况。</p>
+			</div>
+		</header>
+		<div class="container">
+			<div class="main clearfix">
+			<aside class="span-1">
+				<div class="inner">
+					<ul class="nav nav-list property-nav">
+						<li>
+							<a href="#origin">Origin<i class="icon-chevron-right"></i></a>
+						</li>
+						<li>
+							<a href="#rotate">Rotate<i class="icon-chevron-right"></i></a>
+						</li>
+						<li>
+							<a href="#scale">Scale<i class="icon-chevron-right"></i></a>
+						</li>
+						<li>
+							<a href="#translate">Translate<i class="icon-chevron-right"></i></a>
+						</li>
+						<li>
+							<a href="#skew">Skew<i class="icon-chevron-right"></i></a>
+						</li>
+						<li>
+							<a href="#matrix">Matrix<i class="icon-chevron-right"></i></a>
+						</li>
+					</ul>
+					<article class="tips">
+						<header>
+							<h2 class="title">贴士</h2>
+							<section class="part">
+								<div class="sect">
+									<p class="paragraph"><code>CSS</code>可视化格式模型描述了每个元素在坐标系统中的定位。在该坐标空间中，元素的定位和大小可以想象成像素的集合，从原点正直开始，到元素的最右和最下端。</p>
+									<p class="paragraph"><code>Transform</code>能够改变这个坐标系统。使得元素能够平移、旋转、缩放。</p>
+								</div>
+							</section>
+						</header>
+					</article>
+				</div>
+			</aside>
+			<div class="span-2">
+				<!-- Origin Property -->
+				<section id="origin">
+					<header class="page-header">
+						<h1>Origin</h1>
+						<div class="explain">
+							<p>设置或检索对象以某个原点进行转换。默认值 <code>center center</code>。可以通过<code>translate-origin</code>属性来改变。</p>
+							<p>如果提供两个，第一个用于横坐标，第二个用于纵坐标。</p>
+							<p>如果只提供一个，该值将用于横坐标；纵坐标将默认为50%。</p>
+							<p>对应的脚本特性为<strong><code>transformOrigin</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>transform-origin: [&lt;percentage&gt;|&lt;length&gt;left|right] [&lt;percentage&gt;|&lt;length&gt;top|bottom]</code></p>
+						</div>
+					</header>
+					<div class="alert red">
+						<p>通过设置不同的<code>transform-origin</code>值，观察对相同角度转向<code>rotate(45deg)</code>的影响。</p>
+					</div>
+					<div class="example">
+						<div class="transf transf-orgin">
+							<div class="node node-red origin">Original</div>
+							<div class="node node-orange new-origin-1">0% 100%</div>	
+							<div class="node node-yellow new-origin-2">20% 50%</div>	
+							<div class="node node-green new-origin-3">right top</div>	
+							<div class="node node-blue new-origin-4">left bottom</div>	
+							<div class="node node-purple new-origin-5">100% 100%</div>	
+							<div class="node node-brown new-origin-6">80% 80%</div>	
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.deg {
+    -webkit-transform-origin: [percentage|length] [percentage|length];
+       -moz-transform-origin: [percentage|length] [percentage|length];
+        -ms-transform-origin: [percentage|length] [percentage|length];
+         -o-transform-origin: [percentage|length] [percentage|length];
+            transform-origin: [percentage|length] [percentage|length];
+}</pre>
+				</section>
+				<!-- Rotate Property -->
+				<section id="rotate">
+					<header class="page-header">
+						<h1>Rotate</h1>
+						<div class="explain">
+							<p>基于角度转动一个对象，可用于内联元素和块级元素，需先有<code>transform-origin</code>属性的定义。</p>
+						</div>
+						<div class="use">
+							<p><code>rotate(&lt;angle&gt;)</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="transf tf-rotate">
+							<div class="node node-red">Original</div>
+							<div class="node node-orange deg30">30°</div>	
+							<div class="node node-yellow deg-30">-30°</div>	
+							<div class="node node-green deg90">90°</div>	
+							<div class="node node-blue deg120">120°</div>	
+							<div class="node node-purple deg-120">-120°</div>	
+							<div class="node node-brown deg180">180°</div>	
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.deg {
+    -webkit-transform: rotate(angle);
+       -moz-transform: rotate(angle);
+        -ms-transform: rotate(angle);
+         -o-transform: rotate(angle);
+            transform: rotate(angle);
+}</pre>
+				</section>
+				<!-- Scale Property -->
+				<section id="scale">
+					<header class="page-header">
+						<h1>Scale</h1>
+						<div class="explain">
+							<p>让元素变大或缩小。使用正数和负数以及小数作为参数。</p>
+							<p>使用负数值不会缩小元素，而是翻转它(比如，文字被反转)然后相应的缩放它。</p>
+							<p>使用<code>0</code>到<code>1</code>之间的小数来收缩或者缩小一个元素。</p>
+							<p>第一个参数对应<code>X</code>轴，第二个参数对应<code>Y</code>轴。如果第二个参数未提供，则默认取第一个参数的值。</p>
+						</div>
+						<div class="use">
+							<p><code>scale(&lt;number&gt;[,&lt;number&gt;]), scaleX(&lt;number&gt;), scaleY(&lt;number&gt;)</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="transf tf-rotate">
+							<div class="node node-red">Original</div>
+							<div class="node node-orange scale-1">scale(.8,.8)</div>	
+							<div class="node node-yellow scale-2">scale(-1,-1)</div>	
+							<div class="node node-green scale-3">scaleX(2)</div>	
+							<div class="node node-blue scale-4">scaleY(2)</div>	
+							<div class="node node-purple scale-5">scale(2,-2)</div>	
+							<div class="node node-brown scale-6">scale(-2,2)</div>	
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.scale {
+    -webkit-transform: scale(x,y);
+       -moz-transform: scale(x,y);
+        -ms-transform: scale(x,y);
+         -o-transform: scale(x,y);
+            transform: scale(x,y);
+}</pre>
+				</section>
+				<!-- Translate Property -->
+				<section id="translate">
+					<header class="page-header">
+						<h1>Translate</h1>
+						<div class="explain">
+							<p>基于<code>X</code>和<code>Y</code>坐标重新定位元素。参数可以为负数。</p>
+						</div>
+						<div class="use">
+							<p><code>translate(&lt;length&gt;[,&lt;length&gt;]), translateX(&lt;length&gt;), translateY(&lt;length&gt;)</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="transf tf-translate br-text">
+							<div class="node node-red">Original</div>
+							<div class="node node-orange translate-1"><span>translate</span><span>(40px,10px)</span></div>	
+							<div class="node node-yellow translate-2"><span>translate</span><span>(-40px,10px)</span></div>	
+							<div class="node node-green translate-3"><span>translateX</span><span>(50px)</span></div>	
+							<div class="node node-blue translate-4"><span>translateY</span><span>(50px)</span></div>	
+							<div class="node node-purple translate-5"><span>translate</span><span>(40px,-10px)</span></div>	
+							<div class="node node-brown translate-6"><span>translate</span><span>(10px,40px)</span></div>	
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.translate {
+    -webkit-transform: translate(x,y);
+       -moz-transform: translate(x,y);
+        -ms-transform: translate(x,y);
+         -o-transform: translate(x,y);
+            transform: translate(x,y);
+}</pre>
+				</section>
+				<!-- Skew Property -->
+				<section id="skew">
+					<header class="page-header">
+						<h1>Skew</h1>
+						<div class="explain">
+							<p>将对象倾斜，有两个参数(可以是负数)，分别代表<code>x</code>和<code>y</code>轴的倾斜度数。</p>
+							<p>将一个对象围绕着<code>x</code>和<code>y</code>轴按照一定的角度倾斜。这和<code>rotate</code>的旋转不一样，<code>rotate</code>只是旋转，而不会让元素的形状改变。<code>skew</code>会让一个元素的形状改变。</p>
+						</div>
+						<div class="use">
+							<p><code>skew(&lt;angle&gt;[,&lt;angle&gt;]), skewX(&lt;angle&gt;), skewY(&lt;angle&gt;)</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="transf tf-skew br-text">
+							<div class="node node-red">Original</div>
+							<div class="node node-orange skew-1"><span>skew</span><span>(20deg,10deg)</span></div>	
+							<div class="node node-yellow skew-2"><span>skew</span><span>(-20deg,10deg)</span></div>	
+							<div class="node node-green skew-3"><span>skewX</span><span>(45deg)</span></div>	
+							<div class="node node-blue skew-4"><span>skewY</span><span>(-45deg)</span></div>	
+							<div class="node node-purple skew-5"><span>skew</span><span>(10deg,20deg)</span></div>	
+							<div class="node node-brown skew-6"><span>skew</span><span>(10deg,-20deg)</span></div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.skew {
+    -webkit-transform: skew(angle,angle);
+       -moz-transform: skew(angle,angle);
+        -ms-transform: skew(angle,angle);
+         -o-transform: skew(angle,angle);
+            transform: skew(angle,angle);
+}</pre>
+				</section>
+				<!-- Matrix Property -->
+				<section id="matrix">
+					<header class="page-header">
+						<h1>Matrix</h1>
+						<div class="explain">
+							<p>矩阵变换，基于<code>X</code>和<code>Y</code>坐标重新定位元素。</p>
+							<p>通过<code>matrix</code>函数，可以非常灵活的实现上述的各种效果。它有<code>6</code>个参数<code>(a,b,c,d,e,f)</code>，它事实上是一个<code>3*3</code>矩阵，经过该矩阵将旧的参数转换成新值。</p>
+						</div>
+						<div class="use">
+							<p><code>matrix(&lt;number&gt;,&lt;number&gt;,&lt;number&gt;,&lt;number&gt;,&lt;number&gt;,&lt;number&gt;)</code></p>
+						</div>
+					</header>
+					<div class="alert red">
+						<p>下面的图片形象的解释了矩阵数学原理。</p>
+					</div>
+					<div class="pic">
+						<img src="http://jease.net/wp-content/uploads/2012/03/matrix.jpg" alt="矩阵数学原理">
+					</div>
+					<div class="example">
+						<div class="transf">
+							<div class="node node-big node-red">Original</div>
+							<div class="node node-big node-orange matrix">matrix(1,-1,1,1,200,40)</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">.matrix {
+    -webkit-transform: matrix(a,b,c,d,e,f);
+       -moz-transform: matrix(a,b,c,d,e,f);
+        -ms-transform: matrix(a,b,c,d,e,f);
+         -o-transform: matrix(a,b,c,d,e,f);
+            transform: matrix(a,b,c,d,e,f);
+}</pre>
+				</section>
+			</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="inner">
+				<p>Copyright &copy; Jease.net All Rights Reserved.</p>
+			</div>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/afixed.js"></script>
+		<script type="text/javascript" src="../js/google-code-prettify.js"></script>
+		<script type="text/javascript">
+			(function($){
+				window.prettyPrint && prettyPrint();
+			})(window.jQuery)
+		</script>
+	</div>
+</body>
+</html>

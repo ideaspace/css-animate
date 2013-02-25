@@ -1,0 +1,21 @@
+.easing-collection {
+	padding-top: 20px;
+}
+.easing-collection canvas {
+	height: 90px;
+	width: 160px;
+}
+.easing-collection > ul {
+    float: left;
+    width: 540px;
+    font-size: 0;
+}
+.easing-collection > ul > li {
+    display: inline-block;
+    width: 180px;
+    padding-top: 20px;
+    font-size: 14px;
+}
+.easing-collection code {
+    margin: 0;
+}

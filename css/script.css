@@ -1,0 +1,57 @@
+.example { margin-bottom: 0; }
+.ani-compared li { display: inline-block; width: 180px; padding: 5px 0; text-align: center; }
+.ani-compared p { margin-bottom: 10px; }
+.ani-compared p code { margin: 0; color: #3a87ad; }
+
+.ani-rotate {
+	-webkit-animation: rotating 2s linear infinite;
+	   -moz-animation: rotating 2s linear infinite;
+	    -ms-animation: rotating 2s linear infinite;
+	     -o-animation: rotating 2s linear infinite;
+	        animation: rotating 2s linear infinite;
+}
+
+@-webkit-keyframes rotating { 
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes rotating {
+    0% {
+		-moz-transform: rotate(0deg);
+	}
+    100% {
+		-moz-transform: rotate(360deg);
+	}
+}
+
+@-ms-keyframes rotating {
+	0% {
+		-ms-transform: rotate(0deg);
+	}
+	100% {
+		-ms-transform: rotate(360deg);
+	}
+}
+ 
+@-o-keyframes rotating {
+    0% {
+		-o-transform: rotate(0deg);
+	}
+    100% {
+		-o-transform: rotate(360deg);
+	}
+}
+    
+@keyframes rotating {
+    0% {
+		transform: rotate(0deg);
+	}
+    100% {
+		transform: rotate(360deg);
+	}
+}

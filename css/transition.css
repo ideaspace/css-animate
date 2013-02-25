@@ -1,0 +1,149 @@
+.song li {
+	position: relative; 
+	cursor: default;
+	margin: 10px 0;
+    line-height: 40px;
+    overflow: hidden;
+}
+.song li:after {
+    position: absolute;
+    left: 62%;
+    top: 0;
+    content: attr(data-alt);
+    color : #9a9b9a;
+}
+.song p {
+	position: absolute;
+	left: 60px;
+	top: 0;
+    display: block;
+    -webkit-transition: all .5s ease-in-out .3s;
+       -moz-transition: all .5s ease-in-out .3s;
+        -ms-transition: all .5s ease-in-out .3s;
+         -o-transition: all .5s ease-in-out .3s;
+            transition: all .5s ease-in-out .3s;
+}
+.song .tsi-color p {
+    color: #D74B60}
+.song .tsi-color:hover p { color: #ef7a8b; }
+.song .tsi-opacity p {
+    color: #0C56A5;}
+.song .tsi-opacity:hover p {
+    opacity: .5;}
+.song .tsi-width p { color:#880A90; width: 186px;}
+.song .tsi-width:hover p {
+    width: 100%;
+}
+.song .tsi-padding p {
+    color: #3D9404;}
+.song .tsi-padding:hover p {
+    padding-left: 15px;}
+.song .tsi-bg p {
+    clip: rect(10px,auto,30px,auto);
+    color: #B59F12;}
+.song .tsi-bg:hover p {
+    background-color: #FFFFD7;}
+.song .tsi-color:hover span {
+    width: 38%;
+}
+.song .tsi-opacity:hover span {
+    width: 48%;
+}
+.song .tsi-width:hover span {
+    width: 60%;
+}
+.song .tsi-padding:hover span {
+    width: 45%;
+}
+.song .tsi-bg:hover span {
+    width: 45%;
+}
+
+.song span { float: left; height: 40px; width: 40px;
+    border-radius: 20px; box-shadow: 0 0 1px rgba(0,0,0,.23);
+    background-image: url(images/icon_bg.png);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    -webkit-transition: width .5s ease-in-out;
+       -moz-transition: width .5s ease-in-out;
+        -ms-transition: width .5s ease-in-out;
+         -o-transition: width .5s ease-in-out;
+            transition: width .5s ease-in-out;
+}
+.song .node-red {
+    background-position: 9px -485px;}
+.song .node-blue {
+    background-position: 11px -531px;}
+.song .node-purple {
+    background-position: 10px -660px;}
+.song .node-green {
+    background-position: 10px -574px;}
+.song .node-yellow {
+    background-position: 10px -616px;}
+
+.text-red { color: #D74B60; }
+.text-blue { color: #0C56A5; }
+.text-purple { color: #880A90; }
+.text-green { color: #3D9404; }
+.text-yellow { color: #B59F12;}
+
+
+.song-duration p {
+	-webkit-transition-duration: 1s;
+	   -moz-transition-duration: 1s;
+	    -ms-transition-duration: 1s;
+	     -o-transition-duration: 1s;
+	        transition-duration: 1s;
+}
+.song-tweens:hover span {
+    width: 60%;
+    -webkit-transition-duration: 1.5s;
+       -moz-transition-duration: 1.5s;
+        -ms-transition-duration: 1.5s;
+         -o-transition-duration: 1.5s;
+            transition-duration: 1.5s;
+}
+.song-tweens .tsi-ease {
+	-webkit-transition-timing-function: ease;
+	   -moz-transition-timing-function: ease;
+	    -ms-transition-timing-function: ease;
+	     -o-transition-timing-function: ease;
+	        transition-timing-function: ease;
+}
+.song-tweens .tsi-ease-in {
+    -webkit-transition-timing-function: ease-in;
+       -moz-transition-timing-function: ease-in;
+        -ms-transition-timing-function: ease-in;
+         -o-transition-timing-function: ease-in;
+            transition-timing-function: ease-in;
+}
+.song-tweens .tsi-ease-out {
+    -webkit-transition-timing-function: ease-out;
+       -moz-transition-timing-function: ease-out;
+        -ms-transition-timing-function: ease-out;
+         -o-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+}
+.song-tweens .tsi-ease-in-out {
+    -webkit-transition-timing-function: ease-in-out;
+       -moz-transition-timing-function: ease-in-out;
+        -ms-transition-timing-function: ease-in-out;
+         -o-transition-timing-function: ease-in-out;
+            transition-timing-function: ease-in-out;
+}
+.song-tweens .tsi-linear {
+    -webkit-transition-timing-function: linear;
+       -moz-transition-timing-function: linear;
+        -ms-transition-timing-function: linear;
+         -o-transition-timing-function: linear;
+            transition-timing-function: linear;
+}
+.song-delay p {
+	-webkit-transition-delay: 1s;
+       -moz-transition-delay: 1s;
+        -ms-transition-delay: 1s;
+         -o-transition-delay: 1s;
+            transition-delay: 1s;
+}

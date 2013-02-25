@@ -1,0 +1,488 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 动画属性之 Transition</title>
+	<meta name="keywords" content="CSS3, CSS3动画, 过度, Transition">
+	<meta name="description" content="Transition支持大部分的CSS属性实现在指定的时间间隔内实现平滑过渡">
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/transition.css">
+	<link rel="stylesheet" href="../css/prettify.css">
+	<!--[if lt IE 9]>
+		<script src="../js/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="page">
+	<div class="navbar">
+		<div class="inner">
+			<ul class="nav">
+				<li>
+					<a href="../">Home</a>
+				</li>
+				<li>
+					<a href="../transform/">Transform</a>
+				</li>
+				<li class="active">
+					<a href="../transition/">Transition</a>
+				</li>
+				<li>
+					<a href="../animation/">Animation</a>
+				</li>
+				<li>
+					<a href="../event/">Event</a>
+				</li>
+				<li>
+					<a href="../script/">Script</a>
+				</li>
+                <!--<li>-->
+                    <!--<a href="../easing/">Easing</a>-->
+                <!--</li>-->
+			</ul>
+			<a class="weibo" target="_blank" title="新浪微博" href="http://weibo.com/ideaspace/">@ideaspace</a>
+		</div>
+	</div>
+	<div class="wrap">
+		<header class="banner">
+			<div class="inner">
+				<h1 class="heading">CSS3 Transition</h1>
+				<p><code>Transition</code>改变<code>CSS</code>属性起始和终止状态，并在指定的时间间隔内实现平滑过渡。</p>
+				<p><code>Transition</code>支持大部分的<code>CSS</code>属性实现状态的过渡。</p>
+			</div>
+		</header>
+		<div class="container">
+			<div class="main clearfix">
+			<aside class="span-1">
+				<div class="inner">
+					<ul class="nav nav-list property-nav">
+						<li>
+							<a href="#transition">Transition<i class="icon-chevron-right"></i></a>
+						</li>
+						<li>
+							<a href="#property">Property<i class="icon-chevron-right"></i></a>
+						</li>
+						<li>
+							<a href="#duration">Duration<i class="icon-chevron-right"></i></a>
+						</li>
+						<li>
+							<a href="#timingFunction">Timing Function<i class="icon-chevron-right"></i></a>
+						</li>
+						<li>
+							<a href="#delay">Delay<i class="icon-chevron-right"></i></a>
+						</li>
+                        <li>
+                            <a href="#propertySupport">Property Support<i class="icon-chevron-right"></i></a>
+                        </li>
+					</ul>
+					<article class="tips">
+						<header>
+							<h2 class="title">贴士</h2>
+							<section class="part">
+								<div class="sect">
+									<p class="paragraph">正常情况下改变<code>CSS</code>属性时，受影响的元素立刻会从旧的属性改变到旧的属性，页面渲染也会即时更新。使用<code>Transition</code>改变元素<code>CSS</code>属性时，旧的属性会在规定的时间内逐渐平滑过渡到新的属性。</p>
+									<p class="paragraph">只有可运动的<code>CSS</code>属性才能够应用<code>Transition</code>。用脚本检索正在执行过渡效果的元素属性，会得到当前运动状态时的值。</p>
+								</div>
+							</section>
+						</header>
+					</article>
+				</div>
+			</aside>
+			<div class="span-2">
+				<!-- Transition Property -->
+				<section id="transition">
+					<header class="page-header">
+						<h1>Transition</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象过渡效果。</strong></p>
+							<p>缩写格式，包含<code>4</code>个属性。第一个时间值对应<code>duration</code>，第二个时间值对应<code>delay</code></p>
+							<p>对应的脚本特性为<strong><code>transition</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>transition: &lt;property&gt; &lt;duration&gt; &lt;timing-function&gt; &lt;delay&gt;</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="song">
+                            <ul>
+                                <li class="tsi-color" data-alt="color"><span class="node-red"></span><p>雕栏玉砌应犹在，只是朱颜改。</p></li>
+                                <li class="tsi-opacity" data-alt="opactiy"><span class="node-blue"></span><p>昨夜西风凋碧树，独上高楼，望尽天涯路。</p></li>
+                                <li class="tsi-width" data-alt="width"><span class="node-purple"></span><p>无限江山，别时容易见时难。流水落花春去也，天上人间。</p></li>
+                                <li class="tsi-padding" data-alt="padding-left"><span class="node-green"></span><p>多情自古伤离别，更那堪冷落清秋节。</p></li>
+                                <li class="tsi-bg" data-alt="background-color"><span class="node-yellow"></span><p>花自飘零水自流，一种相思，两处闲愁。</p></li>
+                            </ul>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">/* 设置参与过渡的属性为 all, 持续时间为 .5s, 运动算法为 ease-in-out,
+延迟过渡的时间为 0. */
+.transition {
+    -webkit-transition: all .5s ease-in-out;
+       -moz-transition: all .5s ease-in-out;
+        -ms-transition: all .5s ease-in-out;
+         -o-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+}</pre>
+				</section>
+				<!-- Property Property -->
+				<section id="property">
+					<header class="page-header">
+						<h1>Property</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象中的参与过渡的属性。</strong></p>
+						    <p>默认值为：<code>all</code>。默认为所有可以进行过渡的<code>css</code>属性。</p>
+						    <p>如果提供多个属性值，以逗号进行分隔。</p>
+						    <p>对应的脚本特性为<strong><code>transitionProperty</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>transition-property: all | none | &lt;property&gt;[ ,&lt;property&gt; ]</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="song">
+                            <ul>
+                                <li class="tsi-color" data-alt="color"><span class="node-red"></span><p>雕栏玉砌应犹在，只是朱颜改。</p></li>
+                                <li class="tsi-opacity" data-alt="opactiy"><span class="node-blue"></span><p>昨夜西风凋碧树，独上高楼，望尽天涯路。</p></li>
+                                <li class="tsi-width" data-alt="width"><span class="node-purple"></span><p>无限江山，别时容易见时难。流水落花春去也，天上人间。</p></li>
+                                <li class="tsi-padding" data-alt="padding-left"><span class="node-green"></span><p>多情自古伤离别，更那堪冷落清秋节。</p></li>
+                                <li class="tsi-bg" data-alt="background-color"><span class="node-yellow"></span><p>花自飘零水自流，一种相思，两处闲愁。</p></li>
+                            </ul>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">/* 设置参与过渡的属性分别为 color, opacity, width, padding background-color */
+.transition {
+    -webkit-transition-property: color, opacity, width, padding, background-color;
+       -moz-transition-property: color, opacity, width, padding, background-color;
+        -ms-transition-property: color, opacity, width, padding, background-color;
+         -o-transition-property: color, opacity, width, padding, background-color;
+            transition-property: color, opacity, width, padding, background-color;
+}</pre>
+				</section>
+				<!-- Duration Property -->
+				<section id="duration">
+					<header class="page-header">
+						<h1>Duration</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象过渡的持续时间。</strong></p>
+							<p>对应的脚本特性为<strong><code>transitionDuration</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>transition-duration: &lt;time&gt;[ ,&lt;time&gt;]*</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="song song-duration">
+                            <ul>
+                                <li class="tsi-color" data-alt="color"><span class="node-red"></span><p>雕栏玉砌应犹在，只是朱颜改。</p></li>
+                                <li class="tsi-opacity" data-alt="opactiy"><span class="node-blue"></span><p>昨夜西风凋碧树，独上高楼，望尽天涯路。</p></li>
+                                <li class="tsi-width" data-alt="width"><span class="node-purple"></span><p>无限江山，别时容易见时难。流水落花春去也，天上人间。</p></li>
+                                <li class="tsi-padding" data-alt="padding-left"><span class="node-green"></span><p>多情自古伤离别，更那堪冷落清秋节。</p></li>
+                                <li class="tsi-bg" data-alt="background-color"><span class="node-yellow"></span><p>花自飘零水自流，一种相思，两处闲愁。</p></li>
+                            </ul>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">/*  改变持续时间为 1s  */
+.transition {
+    -webkit-transition-duration: 1s;
+       -moz-transition-duration: 1s;
+        -ms-transition-duration: 1s;
+         -o-transition-duration: 1s;
+            transition-duration: 1s;
+}</pre>
+				</section>
+				<!-- Timing Function Property -->
+				<section id="timingFunction">
+					<header class="page-header">
+						<h1>Timing Function</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象中过渡的动画类型。</strong></p>
+							<p>对应的脚本特性为<strong><code>transitionTimingFunction</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>transition-time-function: linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="song song-tweens">
+                            <ul>
+                                <li data-alt="Ease = cubic-bezier(0.25, 0.1, 0.25, 1.0)"><span class="node-red tsi-ease"></span><p class="text-red">雕栏玉砌应犹在，只是朱颜改。</p></li>
+                                <li data-alt="EaseIn = cubic-bezier(0.42, 0, 1.0, 1.0)"><span class="node-blue tsi-ease-in"></span><p class="text-blue">昨夜西风凋碧树，独上高楼，望尽天涯路。</p></li>
+                                <li data-alt="EaseOut = cubic-bezier(0, 0, 0.58, 1.0)"><span class="node-purple tsi-ease-out"></span><p class="text-purple">无限江山，别时容易见时难。流水落花春去也，天上人间。</p></li>
+                                <li data-alt="EaseInOut = cubic-bezier(0.42, 0, 0.58, 1.0)"><span class="node-green tsi-ease-out-in"></span><p class="text-green">多情自古伤离别，更那堪冷落清秋节。</p></li>
+                                <li data-alt="Linear = cubic-bezier(0.0, 0.0, 1.0, 1.0)"><span class="node-yellow tsi-linear"></span><p class="text-yellow">花自飘零水自流，一种相思，两处闲愁。</p></li>
+                            </ul>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">/*  改变动画类型为 linear  */
+.transition {
+    -webkit-transition-timing-function: ease, ease-in, ease-out, ease-in-out, linear;
+       -moz-transition-timing-function: ease, ease-in, ease-out, ease-in-out, linear;
+        -ms-transition-timing-function: ease, ease-in, ease-out, ease-in-out, linear;
+         -o-transition-timing-function: ease, ease-in, ease-out, ease-in-out, linear;
+            transition-timing-function: ease, ease-in, ease-out, ease-in-out, linear;
+}</pre>
+				</section>
+				<!-- Delay Property -->
+				<section id="delay">
+					<header class="page-header">
+						<h1>Delay</h1>
+						<div class="explain">
+							<p><strong>检索或设置对象延迟过渡的时间。</strong></p>
+							<p>对应的脚本特性为<strong><code>transitionDelay</code></strong>。</p>
+						</div>
+						<div class="use">
+							<p><code>transition-delay: &lt;time&gt;[ ,&lt;time&gt; ]</code></p>
+						</div>
+					</header>
+					<div class="example">
+						<div class="song song-delay">
+                            <ul>
+                                <li class="tsi-color" data-alt="color"><span class="node-red"></span><p>雕栏玉砌应犹在，只是朱颜改。</p></li>
+                                <li class="tsi-opacity" data-alt="opactiy"><span class="node-blue"></span><p>昨夜西风凋碧树，独上高楼，望尽天涯路。</p></li>
+                                <li class="tsi-width" data-alt="width"><span class="node-purple"></span><p>无限江山，别时容易见时难。流水落花春去也，天上人间。</p></li>
+                                <li class="tsi-padding" data-alt="padding-left"><span class="node-green"></span><p>多情自古伤离别，更那堪冷落清秋节。</p></li>
+                                <li class="tsi-bg" data-alt="background-color"><span class="node-yellow"></span><p>花自飘零水自流，一种相思，两处闲愁。</p></li>
+                            </ul>
+						</div>
+					</div>
+					<pre class="prettyprint linenums css">/*  设置延迟过渡的时间为 .5s  */
+.transition {
+    -webkit-transition-delay: 1s;
+       -moz-transition-delay: 1s;
+        -ms-transition-delay: 1s;
+         -o-transition-delay: 1s;
+            transition-delay: 1s;
+}</pre>
+				</section>
+                <section id="propertySupport">
+                    <header class="page-header">
+                        <h1>Property Support</h1>
+                        <div class="explain">
+                            <p><strong>以下表格中的属性支持设置 <code>Transition</code>。</strong></p>
+                        </div>
+                    </header>
+                    <table class="table table-striped table-bordered">
+                    <tbody>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Type</th>
+                    </tr>
+                    <tr>
+                        <td><code>background-color</code></td>
+                        <td>color</td>
+                    </tr>
+                    <tr>
+                        <td><code>background-image</code></td>
+                        <td>only gradients</td>
+                    </tr>
+                    <tr>
+                        <td><code>background-position</code></td>
+                        <td>percentage, length</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-bottom-color</code></td>
+                        <td>color</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-bottom-width</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-color</code></td>
+                        <td>color</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-left-color</code></td>
+                        <td>color</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-left-width</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-right-color</code></td>
+                        <td>color</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-right-width</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-spacing</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-top-color</code></td>
+                        <td>color</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-top-width</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>border-width</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>bottom</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>color</code></td>
+                        <td>color</td>
+                    </tr>
+                    <tr>
+                        <td><code>crop</code></td>
+                        <td>rectangle</td>
+                    </tr>
+                    <tr>
+                        <td><code>font-size</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>font-weight</code></td>
+                        <td>number</td>
+                    </tr>
+                    <tr>
+                        <td><code>grid-*</code></td>
+                        <td>various</td>
+                    </tr>
+                    <tr>
+                        <td><code>height</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>left</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>letter-spacing</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>line-height</code></td>
+                        <td>number, length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>margin-bottom</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>margin-left</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>margin-right</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>margin-top</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>max-height</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>max-width</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>min-height</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>min-width</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>opacity</code></td>
+                        <td>number</td>
+                    </tr>
+                    <tr>
+                        <td><code>outline-color</code></td>
+                        <td>color</td>
+                    </tr>
+                    <tr>
+                        <td><code>outline-offset</code></td>
+                        <td>integer</td>
+                    </tr>
+                    <tr>
+                        <td><code>outline-width</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>padding-bottom</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>padding-left</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>padding-right</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>padding-top</code></td>
+                        <td>length</td>
+                    </tr>
+                    <tr>
+                        <td><code>right</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>text-indent</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>text-shadow</code></td>
+                        <td>shadow</td>
+                    </tr>
+                    <tr>
+                        <td><code>top</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>vertical-align</code></td>
+                        <td>keywords, length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>visibility</code></td>
+                        <td>visibility</td>
+                    </tr>
+                    <tr>
+                        <td><code>width</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>word-spacing</code></td>
+                        <td>length, percentage</td>
+                    </tr>
+                    <tr>
+                        <td><code>z-index</code></td>
+                        <td>integer</td>
+                    </tr>
+                    <tr>
+                        <td><code>zoom</code></td>
+                        <td>number</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </section>
+			</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="inner">
+				<p>Copyright &copy; Jease.net All Rights Reserved.</p>
+			</div>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/afixed.js"></script>
+		<script type="text/javascript" src="../js/google-code-prettify.js"></script>
+		<script type="text/javascript">
+			(function(){
+				window.prettyPrint && prettyPrint();
+			})()
+		</script>
+	</div>
+</body>
+</html>

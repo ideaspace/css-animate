@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 动画事件</title>
+	<meta name="keywords" content="CSS3, CSS3动画, 动画事件">
+	<meta name="description" content="文章将为您讲述CSS3动画涉及的3个动画事件">
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/event.css">
+	<link rel="stylesheet" href="../css/prettify.css">
+	<!--[if lt IE 9]>
+		<script src="../js/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="page">
+	<div class="navbar">
+		<div class="inner">
+			<ul class="nav">
+				<li>
+					<a href="../">Home</a>
+				</li>
+				<li>
+					<a href="../transform/">Transform</a>
+				</li>
+				<li>
+					<a href="../transition/">Transition</a>
+				</li>
+				<li>
+					<a href="../animation/">Animation</a>
+				</li>
+				<li class="active">
+					<a href="../event/">Event</a>
+				</li>
+				<li>
+					<a href="../script/">Script</a>
+				</li>
+                <!--<li>-->
+                    <!--<a href="../easing/">Easing</a>-->
+                <!--</li>-->
+			</ul>
+			<a class="weibo" target="_blank" title="新浪微博" href="http://weibo.com/ideaspace/">@ideaspace</a>
+		</div>
+	</div>
+	<div class="wrap">
+		<header class="banner">
+			<div class="inner">
+				<h1 class="heading">CSS3 Animation Event</h1>
+				<p><code>CSS3 Animation</code>定义了三个在动画生命周期可能发生的事件。</p>
+				<p>这些事件包括<code>animationstart, animationend, animationiteration</code>。</p>
+			</div>
+		</header>
+		<div class="container">
+			<div class="main clearfix">
+				<aside class="span-1">
+					<div class="inner">
+						<ul class="nav nav-list property-nav">
+							<li><a href="#aniEvent">Animation Event<i class="icon-chevron-right"></i></a></li>
+							<li><a href="#aniStart">Animation Start<i class="icon-chevron-right"></i></a></li>
+							<li><a href="#aniEnd">Animation End<i class="icon-chevron-right"></i></a></li>
+							<li><a href="#aniIteration">Animation Iteration<i class="icon-chevron-right"></i></a></li>
+						</ul>
+					</div>
+				</aside>
+				<div class="span-2">
+					<!-- Animation Event -->
+					<section id="aniEvent">
+						<header class="page-header">
+							<h1>Animation Event</h1>
+							<div class="explain">
+								<p>鼠标滑过时将触发 <code>Animation Event</code>。</p>
+                                <p>事件都支持冒泡，并且包含一些上下文信息： <code>animationName, elapsedTime</code></p>
+							</div>
+						</header>
+                        <div class="alert red">
+                            <p>下面例子通过监听动画循环过程的各个事件。</p>
+                        </div>
+						<div class="example ani-event">
+                            <p><code>Animation Event</code></p>
+							<div class="animate ani-tf ani-evt">
+                                <ul class="node-list">
+                                    <li>
+                                        <p><code>start</code></p>
+                                        <div class="node node-red ani-ease">start</div>
+                                    </li>
+                                    <li>
+                                        <p><code>end</code></p>
+                                        <div class="node node-orange ani-linear">end</div>
+                                    </li>
+                                    <li>
+                                        <p><code>3 iterations</code></p>
+                                        <div class="node node-yellow ani-ease-in">iteration</div>
+                                    </li>
+                                    <li>
+                                        <p><code>end after 3 iterations</code></p>
+                                        <div class="node node-green ani-ease-out">end</div>
+                                    </li>
+                                </ul>
+							</div>
+						</div>
+                        <div class="alert red">
+                            <p>下面例子通过监听动画事件来获取相应的上下文信息。</p>
+                        </div>
+                        <div class="example">
+                            <div class="animate ani-tf ani-evt">
+                                <div id="aniContext" class="node node-purple ani-ease-out">Context</div>
+                                <ul id="evtStart" class="evt-attr"></ul>
+                            </div>
+                        </div>
+					</section>
+					<!-- Animation Start Event -->
+					<section id="aniStart">
+						<header class="page-header">
+							<h1>Animation Start</h1>
+							<div class="explain">
+								<p>该事件在动画开始时触发，如果设置了<code>animation-delay</code>，事件会在延迟时间结束后触发。</p>
+                                <p>该事件包含 <code>animationName</code> 上下文信息 <code>elapsedTime</code> 属性值为 <code>0</code>。</p>
+							</div>
+						</header>
+						<pre class="prettyprint linenums js">element.addEventListener("animationstart", function(e) {
+    alert("Animation Start!");
+    alert(e.animationName);
+    alert(e.elapsedTime);
+})
+</pre>
+					</section>
+					<section id="aniEnd">
+						<header class="page-header">
+							<h1>Animation End</h1>
+							<div class="explain">
+								<p>该事件在动画结束之后触发。</p>
+                                <p>该事件包含 <code>animationName, elapsedTime</code> 上下文信息。</p>
+							</div>
+						</header>
+						<pre class="prettyprint linenums js">element.addEventListener("animationend", function(e) {
+    alert("Animation End!");
+    alert(e.animationName);
+    alert(e.elapsedTime);
+})
+</pre>
+					</section>
+					<section id="aniIteration">
+						<header class="page-header">
+							<h1>Animation Iteration</h1>
+							<div class="explain">
+								<p>该事件在 <code>animation-iteration-count</code> 设置大于 <code>1</code> 情况下，每次动画循环结束后触发。最后一次除外，因为将触发 <code>animationend</code> 事件。</p>
+                                <p>该事包含 <code>animationName, elapsedTime</code> 上下文信息。</p>
+							</div>
+						</header>
+						<pre class="prettyprint linenums js">element.addEventListener("animationiteration", function(e) {
+    alert("Animation iteration complete!");
+    alert(e.animationName);
+    alert(e.elapsedTime);
+})
+</pre>
+					</section>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="inner">
+				<p>Copyright &copy; Jease.net All Rights Reserved.</p>
+			</div>
+		</footer>
+	</div>
+    <div id="tmplDialog"></div>
+    <script id="winPop" type="text/x-jquery-tmpl">
+        <div id="winAlert" class="win win-pop win-default hidden">
+            <div class="inner">
+                <div class="hd"><button class="close" data-bind="close">&times;</button><h3>${Tips}</h3></div>
+                <div class="bd">
+                    <p>{{html words}}</p>
+                </div>
+                <div class="ft">
+                    <a href="#" class="btn btn-major" data-bind="close">确定</a>
+                </div>
+            </div>
+            <div class="win-bg"></div>
+        </div>
+    </script>
+    <script id="eventAttr" type="text/x-jquery-tmpl">
+        <li>{{html info}}</li>
+    </script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+	<script type="text/javascript" src="../js/afixed.js"></script>
+    <script type="text/javascript" src="../js/google-code-prettify.js"></script>
+    <script type="text/javascript">
+        (function(){
+            window.prettyPrint && prettyPrint();
+            (function () {
+                var sp = Ye.detect.support();
+                var render = function(target,data,fn) {
+                    $("#tmplDialog").empty().append($(target).tmpl(data));
+                    new Ye.dialog('#winAlert',{
+                        masker : true,
+                        static : true
+                    })
+                    fn && fn();
+                }
+                var aniContext = function(e) {
+                    var data = [];
+                    switch (e.type) {
+                        case sp.event.start :
+                            data.push({ info : "动画开始，动画名称为 <code>" + e.animationName + "</code> ，耗时 <code>" + e.elapsedTime + " s</code>"});
+                            break;
+                        case sp.event.end :
+                            data.push({ info : "动画结束，耗时 <code>" + e.elapsedTime + " s</code>"});
+                            break;
+                        case sp.event.iteration :
+                            data.push({ info : "新的动画循环开始于 <code>" + e.elapsedTime + " s</code>"});
+                        break;
+                    }
+                    return data;
+                }
+                document.querySelector('.ani-evt .ani-ease').addEventListener(sp.event.start,function() {
+                    render('#winPop',{
+                        Tips : "动画开始事件",
+                        words: "动画开始了。"
+                    })
+                });
+                document.querySelector('.ani-evt .ani-linear').addEventListener(sp.event.end,function() {
+                    render('#winPop',{
+                        Tips : "动画结束事件",
+                        words: "一次动画结束。"
+                    })
+                });
+                document.querySelector('.ani-evt .ani-ease-in').addEventListener(sp.event.iteration,function() {
+                    render('#winPop',{
+                        Tips : "动画循环事件",
+                        words: "动画循环完成。"
+                    })
+                });
+                document.querySelector('.ani-evt .ani-ease-out').addEventListener(sp.event.end,function() {
+                    render('#winPop',{
+                        Tips : "动画结束事件",
+                        words: "动画循环<code>3</code>次后结束。"
+                    })
+                });
+                document.querySelector('#aniContext').addEventListener(sp.event.start,function(e){
+                    $("#evtStart").empty();
+                    setTimeout(function() {
+                        $("#evtStart").append($("#eventAttr").tmpl(aniContext(e)));
+                    },300)
+                });
+                document.querySelector('#aniContext').addEventListener(sp.event.end,function(e){
+                    $("#evtStart").append($("#eventAttr").tmpl(aniContext(e)));
+                });
+                document.querySelector('#aniContext').addEventListener(sp.event.iteration,function(e){
+                    $("#evtStart").append($("#eventAttr").tmpl(aniContext(e)));
+                });
+            })()
+        })()
+    </script>
+</body>
+</html>
